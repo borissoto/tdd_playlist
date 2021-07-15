@@ -1,4 +1,6 @@
-package petros.efthymiou.groovy
+package petros.efthymiou.groovy.playlist
+
+import petros.efthymiou.groovy.R
 
 data class Playlist (
     val id: String,

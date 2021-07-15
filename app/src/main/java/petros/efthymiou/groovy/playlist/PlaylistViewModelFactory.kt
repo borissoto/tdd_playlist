@@ -1,4 +1,4 @@
-package petros.efthymiou.groovy
+package petros.efthymiou.groovy.playlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
