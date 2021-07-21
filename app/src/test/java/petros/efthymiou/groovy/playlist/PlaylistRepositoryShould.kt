@@ -41,7 +41,7 @@ class PlaylistRepositoryShould : BaseUnitTest() {
         assertEquals(exception, repository.getPlaylists().first().exceptionOrNull())
     }
 
-    private fun mockFailureCase(): PlaylistRepository {
+    private suspend fun mockFailureCase(): PlaylistRepository {
         whenever(service.fetchPlaylists()).thenReturn(
             flow {
                 emit(Result.failure<List<Playlist>>(exception))
@@ -51,7 +51,7 @@ class PlaylistRepositoryShould : BaseUnitTest() {
         return repository
     }
 
-    private fun mockSuccessfulCase(): PlaylistRepository {
+    private suspend fun mockSuccessfulCase(): PlaylistRepository {
         whenever(service.fetchPlaylists()).thenReturn(
             flow {
                 emit(Result.success(playlists))
