@@ -47,7 +47,7 @@ class PlaylistViewModelShould : BaseUnitTest() {
             )
         }
         val viewModel = PlaylistViewModel(repository)
-        assertEquals(RuntimeException("Another message"), viewModel.playlists.getValueForTest()!!.exceptionOrNull())
+        assertEquals(exception, viewModel.playlists.getValueForTest()!!.exceptionOrNull())
     }
 
 
