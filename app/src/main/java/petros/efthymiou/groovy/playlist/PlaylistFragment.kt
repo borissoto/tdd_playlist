@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_playlist.*
 import okhttp3.OkHttpClient
 import petros.efthymiou.groovy.R
 import retrofit2.Retrofit
@@ -31,6 +32,13 @@ class PlaylistFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_playlist, container, false)
 
         setupViewModel()
+
+        viewModel.loader.observe(this as LifecycleOwner, { loading ->
+            when(loading){
+                true -> loader.visibility = View.VISIBLE
+            }
+
+        })
 
         viewModel.playlists.observe(this as LifecycleOwner, { playlists ->
             if(playlists.getOrNull() != null)
@@ -58,7 +66,6 @@ class PlaylistFragment : Fragment() {
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance() =
             PlaylistFragment().apply {}

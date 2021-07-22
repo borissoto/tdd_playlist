@@ -53,6 +53,13 @@ class PlaylistFeature {
 
     }
 
+    @Test
+    fun displaysLoaderWhileFetchingThePlaylists(){
+        assertDisplayed(R.id.loader)
+    }
+
+
+
     fun nthChildOf(parentMatcher: Matcher<View>, childPosition: Int): Matcher<View> {
         return object : TypeSafeMatcher<View>() {
             override fun describeTo(description: Description) {
