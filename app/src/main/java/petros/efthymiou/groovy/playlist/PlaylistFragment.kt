@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_playlist.*
+import kotlinx.android.synthetic.main.fragment_playlist.view.*
 import okhttp3.OkHttpClient
 import petros.efthymiou.groovy.R
 import retrofit2.Retrofit
@@ -36,13 +37,14 @@ class PlaylistFragment : Fragment() {
         viewModel.loader.observe(this as LifecycleOwner, { loading ->
             when(loading){
                 true -> loader.visibility = View.VISIBLE
+                else -> loader.visibility = View.GONE
             }
 
         })
 
         viewModel.playlists.observe(this as LifecycleOwner, { playlists ->
             if(playlists.getOrNull() != null)
-                setupList(view, playlists.getOrNull() !!)
+                setupList(view.playlists_list, playlists.getOrNull() !!)
             else {
 
             }

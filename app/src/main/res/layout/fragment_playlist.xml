@@ -17,7 +17,6 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-
         android:id="@+id/playlists_list"
         android:name="petros.efthymiou.groovy.PlaylistFragment"
         android:layout_width="match_parent"
