@@ -29,7 +29,7 @@ class MyPlaylistRecyclerViewAdapter(
         val item = values[position]
         holder.playlistName.text = item.name
         holder.playlistCategory.text = item.category
-        holder.playlistImage.setImageResource(R.mipmap.playlist)
+        holder.playlistImage.setImageResource(item.image)
     }
 
     override fun getItemCount(): Int = values.size
