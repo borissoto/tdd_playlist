@@ -11,11 +11,11 @@
         android:label="PlaylistFragment" >
         <action
             android:id="@+id/action_playlistFragment_to_playlistDetailFragment"
-            app:destination="@id/playlistDetailFragment" />
+            app:destination="@id/playlistDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/playlistDetailFragment"
-        android:name="petros.efthymiou.groovy.PlaylistDetailFragment"
+        android:id="@+id/playlistDetailsFragment"
+        android:name="petros.efthymiou.groovy.PlaylistDetailsFragment"
         android:label="fragment_playlist_detail"
         tools:layout="@layout/fragment_playlist_detail" >
         <argument

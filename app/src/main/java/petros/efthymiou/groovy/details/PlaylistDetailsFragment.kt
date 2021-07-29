@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_playlist_detail.*
-import petros.efthymiou.groovy.PlaylistDetailFragmentArgs
+import petros.efthymiou.groovy.PlaylistDetailsFragmentArgs
 import petros.efthymiou.groovy.R
 import javax.inject.Inject
 
@@ -22,7 +22,7 @@ class PlaylistDetailsFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: PlaylistDetailsViewModelFactory
 
-    val args: PlaylistDetailFragmentArgs by navArgs()
+    val args: PlaylistDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
