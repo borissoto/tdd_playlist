@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_playlist_detail.*
-import petros.efthymiou.groovy.PlaylistDetailsFragmentArgs
 import petros.efthymiou.groovy.R
 import javax.inject.Inject
 
