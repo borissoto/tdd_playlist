@@ -7,14 +7,16 @@ import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert
 import org.junit.Test
 import petros.efthymiou.groovy.utils.BaseUnitTest
+import petros.efthymiou.groovy.utils.captureValues
 import petros.efthymiou.groovy.utils.getValueForTest
 import kotlin.RuntimeException
 
 class PlaylistDetailsViewModelShould : BaseUnitTest(){
 
-    lateinit var viewmodel: PlaylistDetailsViewModel
+    lateinit var viewModel: PlaylistDetailsViewModel
     private val id = "1"
     private val service : PlaylistDetailsService = mock()
     private val playlistDetails: PlaylistDetails = mock()
@@ -25,8 +27,9 @@ class PlaylistDetailsViewModelShould : BaseUnitTest(){
     @Test
     fun getPlaylistDetailsFromService() = runBlockingTest{
         mockSuccessfulCase()
+        viewModel.getPlaylistDetails(id)
 
-        viewmodel.playlistDetails.getValueForTest()
+        viewModel.playlistDetails.getValueForTest()
 
         verify(service, times(1)).fetchPlaylistDetails(id)
 
@@ -35,14 +38,37 @@ class PlaylistDetailsViewModelShould : BaseUnitTest(){
     @Test
     fun emitsPlaylistDetailsFromService() = runBlockingTest{
         mockSuccessfulCase()
+        viewModel.getPlaylistDetails(id)
 
-        assertEquals(expected, viewmodel.playlistDetails.getValueForTest())
+        assertEquals(expected, viewModel.playlistDetails.getValueForTest())
     }
 
     @Test
     fun emitErrorWhenServiceFails() = runBlockingTest{
         mockErrorCase()
-        assertEquals(error, viewmodel.playlistDetails.getValueForTest())
+        assertEquals(error, viewModel.playlistDetails.getValueForTest())
+    }
+
+    @Test
+    fun showLoaderWhileLoading() = runBlockingTest {
+        mockSuccessfulCase()
+        viewModel.loader.captureValues{
+            viewModel.getPlaylistDetails(id)
+
+            viewModel.playlistDetails.getValueForTest()
+            Assert.assertEquals(true, values[0])
+        }
+    }
+
+    @Test
+    fun closeLoaderAfterPlaylistDetailsLoad()= runBlockingTest {
+        mockSuccessfulCase()
+        viewModel.loader.captureValues{
+            viewModel.getPlaylistDetails(id)
+
+            viewModel.playlistDetails.getValueForTest()
+            Assert.assertEquals(false, values.last())
+        }
     }
 
     private suspend fun mockErrorCase() {
@@ -52,9 +78,9 @@ class PlaylistDetailsViewModelShould : BaseUnitTest(){
             }
         )
 
-        viewmodel = PlaylistDetailsViewModel(service)
+        viewModel = PlaylistDetailsViewModel(service)
 
-        viewmodel.getPlaylistDetails(id)
+        viewModel.getPlaylistDetails(id)
     }
 
     private suspend fun mockSuccessfulCase() {
@@ -64,8 +90,8 @@ class PlaylistDetailsViewModelShould : BaseUnitTest(){
             }
         )
 
-        viewmodel = PlaylistDetailsViewModel(service)
+        viewModel = PlaylistDetailsViewModel(service)
 
-        viewmodel.getPlaylistDetails(id)
+
     }
 }
